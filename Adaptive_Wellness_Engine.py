@@ -47,7 +47,7 @@ def simulate_efficacy_score(wellness_pred, user_feedback):
 
 # --- GLOBAL CONFIG & CUSTOM STYLES (SLIGHTLY MORE SUBTLE PROFESSIONAL THEME) ---
 st.set_page_config(
-    page_title="Adaptive AI Wellness Engine [PRO LIGHT]",
+    page_title="Adaptive AI Wellness Engine",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -316,6 +316,9 @@ if st.session_state.data is None:
     train_and_evaluate_models(st.session_state.data)
 
 
+# ---------------- MAIN TITLE (MODIFIED) ----------------
+st.title("🤖 Adaptive AI Wellness Decision Engine")
+
 # ---------------- SIDEBAR INPUTS ----------------
 with st.sidebar:
     st.header("Input: Activity Metrics")
@@ -440,7 +443,7 @@ if st.session_state.run_prediction:
             st.markdown(f"<p class='prediction-status' style='color:#008000;'>Status: <b>{stress_prediction}</b></p>", unsafe_allow_html=True)
 
     # ---------------- RL EFFICACY SCORE DISPLAY ----------------
-    st.markdown("<div class='efficacy-card'><h4>Simulated RL Action Efficacy Score (Next Day Reward)</h4>"
+    st.markdown("<div class='efficacy-card'><h4>Simulated Efficacy Score (Next Day Reward)</h4>"
                 f"<p>Based on your feedback, this action yields a simulated reward of: <span>{efficacy_score:.2f}%</span></p>"
                 "<p style='font-size: small; margin-top: 5px; opacity: 0.8;'><i>This metric simulates the feedback loop necessary for Reinforcement Learning (RL) to prioritize successful strategies.</i></p></div>", 
                 unsafe_allow_html=True)
@@ -472,17 +475,17 @@ if st.session_state.run_prediction:
             focus = "IMMEDIATE PERFORMANCE CORRECTION"
             
             if stress == "High Stress":
-                key_action = "Your system is redlining. Immediate **STOP ORDER** on all focused activity. We prioritize safety over volume right now."
+                key_action = "Your system is redlining. Immediate <b>STOP ORDER</b> on all focused activity. We prioritize safety over volume right now."
                 recommendations = [
-                    f"<b>PRIORITY 1 (RECOVERY):</b> Commit to a **15-minute complete disconnect** starting at <span class='custom-bold' style='color:{red_accent} !important;'>{slot_15min}</span>. No screens, just slow, focused breathing.",
+                    f"<b>PRIORITY 1 (RECOVERY):</b> Commit to a <b>15-minute complete disconnect</b> starting at <span class='custom-bold' style='color:{red_accent} !important;'>{slot_15min}</span>. No screens, just slow, focused breathing.",
                     f"<b>PRIORITY 2 (MOVEMENT):</b> You must interrupt this sedentary spiral. Get up every 30 minutes for a quick <span class='custom-bold' style='color:{red_accent} !important;'>wall push-up or stretch sequence</span>.",
                     f"<b>PRIORITY 3 (FUEL):</b> You are dehydrated. Consume 500ml water and a nutrient-dense snack <span class='custom-bold' style='color:{red_accent} !important;'>NOW</span>. No excuses.",
-                    f"<b>MINDSET:</b> This is a mandatory reset. Focus on small victories. Your goal is simply to hit 3 breaks before **{slot_120min}**."
+                    f"<b>MINDSET:</b> This is a mandatory reset. Focus on small victories. Your goal is simply to hit 3 breaks before <b>{slot_120min}</b>."
                 ]
             else: 
                 key_action = "Your physical metrics are failing, but your mental game is strong. Let's fix this deficit with disciplined action."
                 recommendations = [
-                    f"<b>PRIORITY 1 (MOVEMENT):</b> Schedule a <span class='custom-bold' style='color:{red_accent} !important;'>30-minute Moderate Cardio session</span> starting at **{slot_60min}**.",
+                    f"<b>PRIORITY 1 (MOVEMENT):</b> Schedule a <span class='custom-bold' style='color:{red_accent} !important;'>30-minute Moderate Cardio session</span> starting at <b>{slot_60min}</b>.",
                     f"<b>PRIORITY 2 (DISCIPLINE):</b> You must achieve a minimum of 250 steps every hour, starting now. Set an alarm.",
                     f"<b>PRIORITY 3 (HYDRATION):</b> Prep a water bottle with a minimum of 1.5L and ensure it is finished by the end of your scheduled workout.",
                     f"<b>MINDSET:</b> Use your low stress level as motivation. Your brain is ready; now get your body to follow orders."
@@ -496,15 +499,15 @@ if st.session_state.run_prediction:
             if stress == "High Stress":
                 key_action = "Your conditioning is good, but your recovery is poor. We swap volume for quality and attack the stress root."
                 recommendations = [
-                    f"<b>PRIORITY 1 (RECOVERY):</b> Book your <span class='custom-bold' style='color:{gold_accent} !important;'>10-minute Meditation/Breathing Drill</span> to start at **{slot_30min}**.",
+                    f"<b>PRIORITY 1 (RECOVERY):</b> Book your <span class='custom-bold' style='color:{gold_accent} !important;'>10-minute Meditation/Breathing Drill</span> to start at <b>{slot_30min}</b>.",
                     f"<b>PRIORITY 2 (ACTIVITY):</b> Keep your momentum, but choose a lighter resistance workout (yoga or light weights) instead of high impact.",
-                    f"<b>PRIORITY 3 (HABIT):</b> Move your next focused work block to **{slot_60min}** and finish all hydration before 18:00 (6 PM).",
+                    f"<b>PRIORITY 3 (HABIT):</b> Move your next focused work block to <b>{slot_60min}</b> and finish all hydration before 18:00 (6 PM).",
                     f"<b>MINDSET:</b> You're close to burnout. Prove you can execute recovery just as hard as you execute activity."
                 ]
             else: 
                 key_action = "Solid foundation! Now, we push the limits and aim for the High tier. Attack the deficit in sustained activity."
                 recommendations = [
-                    f"<b>PRIORITY 1 (MOVEMENT):</b> Your challenge is a <span class='custom-bold' style='color:{gold_accent} !important;'>45-minute Power Walk/Light Jog</span> starting precisely at **{slot_60min}**.",
+                    f"<b>PRIORITY 1 (MOVEMENT):</b> Your challenge is a <span class='custom-bold' style='color:{gold_accent} !important;'>45-minute Power Walk/Light Jog</span> starting precisely at <b>{slot_60min}</b>.",
                     f"<b>PRIORITY 2 (FOCUS):</b> Schedule your best 90-minute study/work block immediately. Your mental capacity is maximized right now.",
                     f"<b>PRIORITY 3 (FUEL):</b> Pre-plan tomorrow's high-protein breakfast. Consistency is key to unlocking the 'High' level.",
                     f"<b>MINDSET:</b> Do not coast! Find the specific weak point in your metrics and commit to improving it by 10% today."
@@ -518,17 +521,17 @@ if st.session_state.run_prediction:
             if stress == "High Stress":
                 key_action = "You're an elite performer, but you're overtraining your mind. We implement strategic rest to prevent injury."
                 recommendations = [
-                    f"<b>PRIORITY 1 (ACTIVE RECOVERY):</b> Swap your intense session for a <span class='custom-bold' style='color:{green_accent} !important;'>30-minute session of Mobility or Deep Stretching</span>, scheduled at **{slot_60min}**.",
+                    f"<b>PRIORITY 1 (ACTIVE RECOVERY):</b> Swap your intense session for a <span class='custom-bold' style='color:{green_accent} !important;'>30-minute session of Mobility or Deep Stretching</span>, scheduled at <b>{slot_60min}</b>.",
                     f"<b>PRIORITY 2 (COGNITION):</b> Shut down complex tasks. Engage in passive learning (e.g., educational podcast) starting at <span class='custom-bold' style='color:{green_accent} !important;'>{slot_30min}</span>.",
                     f"<b>PRIORITY 3 (REINFORCE):</b> Review your sleep data and ensure your room temperature and light levels are perfectly optimized for your sleep duration.",
                     f"<b>MINDSET:</b> True strength is knowing when to hold back. You earned this recovery day. Execute the rest protocol perfectly."
                 ]
             else: 
-                key_action = "**PEAK PERFORMANCE CONFIRMED.** Your mission is to hold this level and incorporate a challenge for growth."
+                key_action = "<b>PEAK PERFORMANCE CONFIRMED.</b> Your mission is to hold this level and incorporate a challenge for growth."
                 recommendations = [
-                    f"<b>PRIORITY 1 (CHALLENGE):</b> Introduce a <span class='custom-bold' style='color:{green_accent} !important;'>new strength or skills drill</span> (e.g., balancing, plank challenge) starting at **{slot_60min}**.",
+                    f"<b>PRIORITY 1 (CHALLENGE):</b> Introduce a <span class='custom-bold' style='color:{green_accent} !important;'>new strength or skills drill</span> (e.g., balancing, plank challenge) starting at <b>{slot_60min}</b>.",
                     f"<b>PRIORITY 2 (FUEL):</b> Focus on nutrient timing. Consume a balanced meal exactly 90 minutes before your next activity for peak performance fuel.",
-                    f"<b>PRIORITY 3 (HABIT LOCK):</b> Schedule your mandatory <b>5-minute eye break</b> at **{slot_30min}**. This small discipline maintains elite focus.",
+                    f"<b>PRIORITY 3 (HABIT LOCK):</b> Schedule your mandatory <b>5-minute eye break</b> at <b>{slot_30min}</b>. This small discipline maintains elite focus.",
                     f"<b>MINDSET:</b> Don't just do the work; analyze it. Find one metric to improve by 1% tomorrow."
                 ]
                 
@@ -542,13 +545,13 @@ if st.session_state.run_prediction:
                     ⭐ PRIMARY FOCUS: <span style='font-weight: 700;'>{focus}</span>
                 </p>
                 <p style="font-weight:bold; color:{text_color}; border-top: 1px solid #CED4DA; padding-top: 10px;">
-                    🎯 **AI ACTION PROTOCOL:** {key_action}
+                    🎯 <b>AI ACTION PROTOCOL:</b> {key_action}
                 </p>
                 <ul style='list-style-type: none; padding-left: 0;'>
                     {"".join(f"<li style='color: {text_color}; margin-bottom: 8px;'>&#9889; {r}</li>" for r in recommendations)}
                 </ul>
                 <p style="font-style: italic; font-size: small; color: #6C757D;'>
-                    *AI-driven protocols integrate biometrics, habits, and dynamic time scheduling.*
+                    <b>AI-driven protocols integrate biometrics, habits, and dynamic time scheduling.</b>
                 </p>
             </div>
             """, unsafe_allow_html=True)
@@ -567,18 +570,18 @@ if st.session_state.run_prediction:
     # Analyze Steps
     steps_diff = user_inputs_w.get('TotalSteps', 0) - medians.get('TotalSteps', 0)
     if steps_diff > 1000:
-        comparison_statements.append(f"Steps: Your **{user_inputs_w['TotalSteps']:.0f} steps** are significantly **ABOVE** the historical median ({medians['TotalSteps']:.0f}).")
+        comparison_statements.append(f"Steps: Your <b>{user_inputs_w['TotalSteps']:.0f} steps</b> are significantly <b>ABOVE</b> the historical median ({medians['TotalSteps']:.0f}).")
     elif steps_diff < -1000:
-        comparison_statements.append(f"Steps: Your **{user_inputs_w['TotalSteps']:.0f} steps** are significantly **BELOW** the historical median ({medians['TotalSteps']:.0f}).")
+        comparison_statements.append(f"Steps: Your <b>{user_inputs_w['TotalSteps']:.0f} steps</b> are significantly <b>BELOW</b> the historical median ({medians['TotalSteps']:.0f}).")
     else:
-        comparison_statements.append(f"Steps: Your **{user_inputs_w['TotalSteps']:.0f} steps** are in line with the historical average.")
+        comparison_statements.append(f"Steps: Your <b>{user_inputs_w['TotalSteps']:.0f} steps</b> are in line with the historical average.")
 
     # Analyze Sedentary Minutes
     sedentary_diff = user_inputs_w.get('SedentaryMinutes', 0) - medians.get('SedentaryMinutes', 0)
     if sedentary_diff > 60:
-        comparison_statements.append(f"Sedentary: Your **{user_inputs_w['SedentaryMinutes']:.0f} sedentary minutes** are **HIGHER** than the median ({medians['SedentaryMinutes']:.0f}).")
+        comparison_statements.append(f"Sedentary: Your <b>{user_inputs_w['SedentaryMinutes']:.0f} sedentary minutes</b> are <b>HIGHER</b> than the median ({medians['SedentaryMinutes']:.0f}).")
     elif sedentary_diff < -60:
-        comparison_statements.append(f"Sedentary: Your **{user_inputs_w['SedentaryMinutes']:.0f} sedentary minutes** are **LOWER** than the median ({medians['SedentaryMinutes']:.0f}).")
+        comparison_statements.append(f"Sedentary: Your <b>{user_inputs_w['SedentaryMinutes']:.0f} sedentary minutes</b> are <b>LOWER</b> than the median ({medians['SedentaryMinutes']:.0f}).")
     else:
         comparison_statements.append(f"Sedentary: Your sedentary time is close to the historical median.")
 
@@ -667,7 +670,7 @@ if st.session_state.run_prediction:
             font_color='#333333', 
             title_font_color='#333333', 
             margin=dict(t=30), 
-            height=300,
+            height=350,
             showlegend=False
         )
         st.plotly_chart(fig_stress, use_container_width=True)
